@@ -1,0 +1,44 @@
+<?<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Card Validation</title>
+</head>
+<body>
+    
+</body>
+<script>
+function validateCreditCardNumber(cardNumber) {
+    // Remove any spaces or dashes from the card number
+    cardNumber = cardNumber.replace(/\s+/g, "").replace(/-/g, "");
+  
+    // Regular expressions for different card types
+    var regexVisa = /^4[0-9]{12}(?:[0-9]{3})?$/;
+    var regexMasterCard = /^5[1-5][0-9]{14}$/;
+    var regexAmex = /^3[47][0-9]{13}$/;
+    var regexDiscover = /^6011[0-9]{12}$/;
+    var regexDinersClub = /^3(?:0[0-5]|[68][0-9])[0-9]{11}$/;
+  
+    // Check the card type and validate the card number
+    if (regexVisa.test(cardNumber)) {
+      return "Valid: VISA";
+    } else if (regexMasterCard.test(cardNumber)) {
+      return "Valid: Master Card";
+    } else if (regexAmex.test(cardNumber)) {
+      return "Valid: American Express";
+    } else if (regexDiscover.test(cardNumber)) {
+      return "Valid: Discover";
+    } else if (regexDinersClub.test(cardNumber)) {
+      return "Valid: Diners Club";
+    } else {
+      return "Invalid card number.";
+    }
+  }
+  
+  // Example usage:
+  var cardNumber = "300-305 12345678";
+  var validationResult = validateCreditCardNumber(cardNumber);
+  console.log(validationResult);
+  </script>
+</html>

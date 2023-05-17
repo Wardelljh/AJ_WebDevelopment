@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Test JavaScript Form Validation</title>
+	<script type="text/javascript">
+		function validateForm() {
+			// Get form inputs
+			var name = document.forms["registrationForm"]["name"].value;
+			var address = document.forms["registrationForm"]["address"].value;
+			var zipCode = document.forms["registrationForm"]["zipCode"].value;
+			var country = document.forms["registrationForm"]["country"].value;
+			var gender = document.forms["registrationForm"]["gender"].value;
+			var preferences = document.querySelectorAll('input[name="preferences[]"]:checked');
+			var phone = document.forms["registrationForm"]["phone"].value;
+			var email = document.forms["registrationForm"]["email"].value;
+			var password = document.forms["registrationForm"]["password"].value;
+			var verifyPassword = document.forms["registrationForm"]["verifyPassword"].value;
+
+			// Validate inputs
+			if (name == "") {
+				alert("Please enter your name.");
+				return false;
+			}
+			if (name.length > 20) {
+				alert("Name should not exceed 20 characters.");
+				return false;
+			}
+			if (address == "") {
+				alert("Please enter your address.");
+				return false;
+			}
+			if (zipCode == "") {
+				alert("Please enter your zip code.");
+				return false;
+			}
+			if (country == "") {
+				alert("Please select a country.");
+				return false;
+			}
+			if (gender == "") {
+				alert("Please select a gender.");
+				return false;
+			}
+			if (preferences.length < 2) {
+				alert("Please select at least two preferences.");
+				return false;
+			}
+			if (phone == "") {
+				alert("Please enter your phone number.");
+				return false;
+			}
+			if (email == "") {
+				alert("Please enter your email.");
+				return false;
+			}
+			if (password == "") {
+				alert("Please enter a password.");
+				return false;
+			}
+			if (password.length < 6 || password.length > 8) {
+				alert("Password should be between 6 and 8 characters.");
+				return false;
+			}
+			if (password != verifyPassword) {
+				alert("Password and verify password must match.");
+				return false;
+			}
+			return true;
+		}
+	</script>
+</head>
+<body>
+	<table>
+	<form name="registrationForm" onsubmit="return validateForm()">
+		<h2>Test JavaScript Form Validation</h2>
+		<tr><td><label for="name">Name*:</label></td>
+		<td><input type="text" name="name" maxlength="20" required><br></td></tr>
+
+		<tr><td><label for="address">Address:</label></td>
+		<td><textarea name="address"></textarea><br></td></tr>
+
+		<tr><td><label for="zipCode">Zip Code*:</label></td>
+		<td><input type="text" name="zipCode" required><br></td></tr>
+
+		<tr><td><label for="country">Country*:</label></td>
+		<td><select name="country" required>
+			<option value=""></option>
+			<option value="TANZANIA">TANZANIA</option>
+			<option value="KENYA">KENYA</option>
+			<option value="UGANDA">UGANDA</option>
+			<option value="RWANDA">RWANDA</option>
+		</select><br></td></tr>
+
+		<tr><td><label for="gender">Gender*:</label></td>
+		<td><input type="radio" name="gender" value="Male" required> Male
+		<input type="radio" name="gender" value="Female" required> Female<br></td></tr>
+
+		<tr><td><label for="preferences">Preferences*:</label><br></td>
+		<td><input type="checkbox" name="preferences[]" value="Red"> Red<br>
+        <input type="checkbox" name="preferences[]" value="Green"> Green<br>
+        <input type="checkbox" name="preferences[]" value="Blue"> Blue<br></td></tr>
+        <tr><td><label for="phone">Phone*:</label></td>
+        <td><input type="text" name="phone" required><br></td></tr>
+    
+        <tr><td><label for="email">Email*:</label></td>
+        <td><input type="email" name="email" required><br></td></tr>
+    
+        <tr><td><label for="password">Password (6-8 characters)*:</label></td>
+        <td><input type="password" name="password" minlength="6" maxlength="8" required><br></td></tr>
+    
+        <tr><td><label for="verifyPassword">Verify Password*:</label></td>
+        <td><input type="password" name="verifyPassword" required><br></td></tr>
+    
+        <tr><td></td><td><input type="submit" value="SEND">
+        <input type="reset" value="CLEAR"></td></tr>
+    </form>
+</table>
+</body>
+</html>    
