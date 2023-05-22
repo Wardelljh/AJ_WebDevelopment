@@ -1,0 +1,89 @@
+<?<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question 2</title>
+<head>
+  <title>Link Table Generator</title>
+  <style>
+    form{
+        background-color: lavender;
+        width: 35%;
+        position:
+    }
+    table {
+      border-collapse: collapse;
+    }
+    td, th {
+      border: 1px solid black;
+      padding: 8px;
+      background-color: lavender;
+    }
+    th{
+        color: blue;
+    }
+    button{
+        color: blue;
+    }
+  </style>
+</head>
+<body>
+  <form>
+    <label for="startPos">Start Range:</label><br>
+    <input type="text" id="startPos" value="1"><br>
+    <label for="endPos">End Range:</label><br>
+    <input type="text" id="endPos" value="1"><br>
+    <button type="button" onclick="displayTable()">Generate Table</button>
+  </form>
+  
+  <p id="rangeMessage"></p>
+  
+  <table id="linkTable">
+    <thead>
+      <tr>
+        <th>Links</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+  
+  <script>
+    let data = ["Data Structure.html", "Database Application(oracle).html", "Network Security.html", "Enterpreneurship.html", "OOP.html", "SAD.html", "DS.html"];
+    
+    function displayTable() {
+      var startPos = parseInt(document.getElementById("startPos").value);
+      var endPos = parseInt(document.getElementById("endPos").value);
+      var rangeMessage = document.getElementById("rangeMessage");
+      var tableBody = document.querySelector("#linkTable tbody");
+      
+      rangeMessage.textContent = "Valid Range: 1-" + data.length;
+      
+      if (isNaN(startPos) || isNaN(endPos) || startPos < 1 || endPos > data.length || startPos > endPos) {
+        rangeMessage.textContent = "Invalid range, valid range: 1-" + data.length;
+        tableBody.innerHTML = "";
+        return;
+      }
+      
+      tableBody.innerHTML = "";
+      for (var i = startPos - 1; i < endPos; i++) {
+        var row = document.createElement("tr");
+        var linkCell = document.createElement("td");
+        var link = document.createElement("a");
+        link.href = data[i];
+        link.textContent = data[i];
+        linkCell.appendChild(link);
+        row.appendChild(linkCell);
+        tableBody.appendChild(row);
+      }
+    }
+    
+    function main() {
+      displayTable();
+    }
+    
+    main();
+  </script>
+</body>
+</html>
+
